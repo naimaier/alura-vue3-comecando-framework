@@ -1,25 +1,15 @@
 <template>
     <div class="is-flex is-align-items-center is-justify-content-space-between">
         <CronometroComp :tempoEmSegundos="tempoEmSegundos"/>
-        <button class="button" @click="iniciar" :disabled="cronometroRodando">
-            <span class="icon">
-                <i class="fas fa-play"></i>
-            </span>
-            <span>play</span>
-        </button>
-        <!-- : faz o atributo se likar com o estado da variavel -->
-        <button class="button" @click="finalizar" :disabled="!cronometroRodando">
-            <span class="icon">
-                <i class="fas fa-stop"></i>
-            </span>
-            <span>stop</span>
-        </button>
+        <BotaoAction @clicked="iniciar" icon="fas fa-play" label="play" :disabled="cronometroRodando"/>
+        <BotaoAction @clicked="finalizar" icon="fas fa-stop" label="stop" :disabled="!cronometroRodando"/>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import CronometroComp from './Cronometro.vue';
+import BotaoAction from './BotaoAction.vue';
 export default defineComponent({
     name: "TemporizadorComp",
     emits: ['aoTemporizadorFinalizado'],
@@ -45,6 +35,6 @@ export default defineComponent({
             this.tempoEmSegundos = 0 
         }
     },
-    components: { CronometroComp }
+    components: { CronometroComp, BotaoAction }
 })
 </script>
